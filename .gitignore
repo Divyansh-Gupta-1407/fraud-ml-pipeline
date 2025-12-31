@@ -205,3 +205,15 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Kaggle API Key
+~/.kaggle/kaggle.json
+kaggle.json
+
+# Data
+data/raw
+data/processed
+
+# Model Artifacts
+artifacts/
+models/
