@@ -8,8 +8,12 @@ WORKDIR /app
 
 # -------- Stage 3: Copy required files --------
 COPY src/api src/api
-COPY mlruns mlruns
-COPY mlartifacts mlartifacts
+# COPY mlruns mlruns
+# COPY mlartifacts mlartifacts
+
+COPY artifacts artifacts
+COPY data/processed/scaler.pkl data/processed/scaler.pkl
+
 # This creates the directory structure and copies the file
 COPY data/processed/scaler.pkl data/processed/scaler.pkl 
 COPY requirements-inference.txt .

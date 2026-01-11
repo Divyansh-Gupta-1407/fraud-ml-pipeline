@@ -24,11 +24,15 @@ print("Loading resources...")
 
 scaler = joblib.load(SCALER_PATH)
 
-MODEL_PATH = (
-    "mlruns/0/models/m-195b68f592034b2cb1a51d18562c100e/artifacts"
-)
+# MODEL_PATH = (
+#     "mlruns/0/models/m-195b68f592034b2cb1a51d18562c100e/artifacts"
+# )
 
+# model = mlflow.pyfunc.load_model(MODEL_PATH)
+
+MODEL_PATH = "artifacts/model"
 model = mlflow.pyfunc.load_model(MODEL_PATH)
+
 print("✅ Model loaded successfully!")
 
 
