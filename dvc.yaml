@@ -1,0 +1,30 @@
+stages:
+  ingest_data:
+    cmd: python src/data/ingest_data.py
+    deps:
+    - src/data/ingest_data.py
+    outs:
+    - data/raw/creditcard.csv
+  validate_data:
+    cmd: python src/data/validate_data.py
+    deps:
+    - data/raw/creditcard.csv
+    - src/data/validate_data.py
+    outs:
+    - validation_success.txt
+  process_data:
+    cmd: python src/data/process_data.py
+    deps:
+    - data/raw/creditcard.csv
+    - src/data/process_data.py
+    outs:
+    - data/processed/scaler.pkl
+    - data/processed/test_processed.csv
+    - data/processed/train_processed.csv
+  train_model:
+    cmd: python src/models/train_model.py
+    deps:
+    - data/processed/train_processed.csv
+    - src/models/train_model.py
+    outs:
+    - artifacts/model.pkl

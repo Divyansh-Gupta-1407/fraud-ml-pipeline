@@ -217,3 +217,4 @@ data/processed
 # Model Artifacts
 artifacts/
 models/
+/validation_success.txt

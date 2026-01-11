@@ -1,0 +1,70 @@
+schema: '2.0'
+stages:
+  ingest_data:
+    cmd: python src/data/ingest_data.py
+    deps:
+    - path: src/data/ingest_data.py
+      hash: md5
+      md5: bc64dc2878f3b09d15c34121cf516aba
+      size: 1166
+    outs:
+    - path: data/raw/creditcard.csv
+      hash: md5
+      md5: e90efcb83d69faf99fcab8b0255024de
+      size: 150828752
+  validate_data:
+    cmd: python src/data/validate_data.py
+    deps:
+    - path: data/raw/creditcard.csv
+      hash: md5
+      md5: e90efcb83d69faf99fcab8b0255024de
+      size: 150828752
+    - path: src/data/validate_data.py
+      hash: md5
+      md5: bb6f8656e0a99c8e028fa2d27a92d788
+      size: 711
+    outs:
+    - path: validation_success.txt
+      hash: md5
+      md5: 8004a714f6c75b5ffae991bae65867d0
+      size: 31
+  process_data:
+    cmd: python src/data/process_data.py
+    deps:
+    - path: data/raw/creditcard.csv
+      hash: md5
+      md5: e90efcb83d69faf99fcab8b0255024de
+      size: 150828752
+    - path: src/data/process_data.py
+      hash: md5
+      md5: c9790e250929d9aaeed069198d7ecf8e
+      size: 2240
+    outs:
+    - path: data/processed/scaler.pkl
+      hash: md5
+      md5: 636acf916b53b4889617e409e60fa708
+      size: 935
+    - path: data/processed/test_processed.csv
+      hash: md5
+      md5: 87052b693650e52bfada1000ad905bc5
+      size: 31689456
+    - path: data/processed/train_processed.csv
+      hash: md5
+      md5: 2c87bf0b1adadfa1e028f0ad2de5e318
+      size: 259942342
+  train_model:
+    cmd: python src/models/train_model.py
+    deps:
+    - path: data/processed/train_processed.csv
+      hash: md5
+      md5: 2c87bf0b1adadfa1e028f0ad2de5e318
+      size: 259942342
+    - path: src/models/train_model.py
+      hash: md5
+      md5: 96ca2d95b35704a4e0beeff8ec03fbeb
+      size: 2313
+    outs:
+    - path: artifacts/model.pkl
+      hash: md5
+      md5: 5b59d2849a2772d2a3d85f8c74270e2c
+      size: 1002955

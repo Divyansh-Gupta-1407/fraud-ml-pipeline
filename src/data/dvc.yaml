@@ -1,0 +1,7 @@
+stages:
+  ingest_data:
+    cmd: python src/data/ingest_data.py
+    deps:
+    - src/data/ingest_data.py
+    outs:
+    - data/raw/creditcard.csv
